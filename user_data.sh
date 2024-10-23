@@ -131,7 +131,7 @@ http {
 }
 EOF
 
-sudo systemctl start php-fpm
-sudo systemctl enable php-fpm
-sudo systemctl start nginx
-sudo systemctl enable nginx
+systemctl start php-fpm
+systemctl enable php-fpm
+systemctl start nginx
+systemctl enable nginx
