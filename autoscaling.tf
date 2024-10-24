@@ -1,9 +1,10 @@
 resource "aws_launch_template" "foodbox-ec2-template-vp" {
-    depends_on = [ aws_db_instance.foodbox-rds-vp ]
+    depends_on = [ aws_db_instance.foodbox-rds-vp, aws_efs_file_system.foodbox-efs-vp ]
     name_prefix   = "foodbox-ec2-template-vp"
     image_id      = "ami-00385a401487aefa4"
     instance_type = "t3a.small"
     user_data     = base64encode(templatefile("user_data.sh", {
+        efs_id      = "${aws_efs_file_system.foodbox-efs-vp.id}"
         wp_version  = "${var.wp_version}", 
         db_name     = "${var.db_name}",
         db_user     = "${var.db_user}",
@@ -39,6 +40,7 @@ resource "aws_launch_template" "foodbox-ec2-template-vp" {
 }
 
 resource "aws_autoscaling_group" "foodbox-autoscaling-group-vp" {
+    depends_on          = [ aws_db_instance.foodbox-rds-vp, aws_efs_file_system.foodbox-efs-vp ]
     desired_capacity    = var.ec2_desired_capacity
     max_size            = var.ec2_max_instances
     min_size            = var.ec2_min_instances
