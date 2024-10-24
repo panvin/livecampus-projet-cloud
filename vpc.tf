@@ -1,5 +1,5 @@
 resource "aws_vpc" "foodbox-vpc-vp" {
-  cidr_block = "10.0.0.0/16"
+  cidr_block = var.cidr_vpc
   enable_dns_hostnames = true
 
    tags = {
