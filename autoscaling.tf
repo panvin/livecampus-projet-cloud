@@ -16,7 +16,7 @@ resource "aws_launch_template" "foodbox-ec2-template-vp" {
     block_device_mappings {
         device_name = "/dev/xvda"
         ebs {
-          volume_size = 30
+          volume_size = 10
           volume_type = "gp3"
         }
     } 
