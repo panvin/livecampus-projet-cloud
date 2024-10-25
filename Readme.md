@@ -36,4 +36,4 @@ ec2_min_instances       = 1
 
 - Initialiser le backend terraform  `terraform init`
 - Pré-visualiser le déploiement     `terraform plan`
-- Lancer le déploiement             `terraform plan`
+- Lancer le déploiement             `terraform apply`
